@@ -1,6 +1,9 @@
-logs
-samples
+logs*
+samples*
 checkpoint
 data
 __pycache__
 out
+.idea
+tf-venv3
+outputImages

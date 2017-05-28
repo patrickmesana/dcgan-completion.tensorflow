@@ -14,6 +14,8 @@ from six.moves import xrange
 from ops import *
 from utils import *
 
+imageFormat = 'jpg'
+
 class DCGAN(object):
     def __init__(self, sess, image_size=64, is_crop=False,
                  batch_size=64, sample_size=64,
@@ -119,7 +121,7 @@ class DCGAN(object):
         self.grad_complete_loss = tf.gradients(self.complete_loss, self.z)
 
     def train(self, config):
-        data = glob(os.path.join(config.dataset, "*.png"))
+        data = glob(os.path.join(config.dataset, "*."+imageFormat))
         #np.random.shuffle(data)
         assert(len(data) > 0)
 
@@ -170,7 +172,7 @@ Initializing a new one.
 """)
 
         for epoch in xrange(config.epoch):
-            data = glob(os.path.join(config.dataset, "*.png"))
+            data = glob(os.path.join(config.dataset, "*." + imageFormat))
             batch_idxs = min(len(data), config.train_size) // self.batch_size
 
             for idx in xrange(0, batch_idxs):
